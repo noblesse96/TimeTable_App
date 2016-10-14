@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "488795579734",
+    "firebase_url": "https://time-table-dev.firebaseio.com",
+    "project_id": "time-table-dev",
+    "storage_bucket": "time-table-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488795579734:android:ef1e859ddc3d3d8a",
+        "android_client_info": {
+          "package_name": "com.nitrkl.timetable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488795579734-m7igccn8gf02jjienadphrthrpkmi520.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCg21HKCby66MWVgZ1IKuFkRVm12c_3ZmE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
