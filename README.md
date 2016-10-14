@@ -1,6 +1,6 @@
 # TimeTable_App
-This app allows a person to store his timetable with other cool features
-
-Hello Everyone,
-
- I,a student want to develop a time table app that can help both teachers and students to store their timetable which acts a connection between professor and students. If professor updates his timetable the app should notify all his students about the change. The app provides a notification about the class basing on gps location of person. It also counts the attendance details of all students.
+This app allows anyone to schedule their day.
+# Features:
+If professor updates his timetable the app will notify all his students about the class change/cancel/shift in time slot.
+App notifies student/teacher before time basing on the GPS calculated distance between them and class
+It automatically calculates the attendance
