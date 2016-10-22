@@ -15,11 +15,12 @@ public class ScrollingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling);
+        setContentView(R.layout.final_table_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), new Period("", "11-10-2016", TimeSlot.DEBUG));
+//        NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), new Period("OE", "11-10-2016", TimeSlot.DEBUG));
+//        NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), new Period("EC", "11-10-2016", TimeSlot.DEBUG));
 
         //NotificationEventReceiver.setupAlarm(getApplicationContext());
 

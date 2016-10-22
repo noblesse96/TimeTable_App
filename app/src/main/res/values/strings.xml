@@ -90,4 +90,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="row_2_column_2">Row 2 column 2</string>
+    <string name="row_2_column_1">Row 2 column 1</string>
 </resources>

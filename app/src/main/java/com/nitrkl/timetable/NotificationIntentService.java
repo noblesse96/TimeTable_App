@@ -37,6 +37,7 @@ public class NotificationIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        Period period;
         Log.d(getClass().getSimpleName(), "onHandleIntent, started handling a notification event");
         try {
             String action = intent.getAction();
@@ -58,8 +59,10 @@ public class NotificationIntentService extends IntentService {
     private void processStartNotification() {
         // Do something. For example, fetch fresh data from backend to create a rich notification?
 
+//       int picture = period.mPicture;
+
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setContentTitle("Class Notification")
+        builder.setContentTitle("Huhuhu")
                 .setAutoCancel(false)
                 .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
                 .setContentText("The class is about to start")

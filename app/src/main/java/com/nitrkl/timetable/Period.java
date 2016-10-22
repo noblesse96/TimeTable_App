@@ -1,8 +1,5 @@
 package com.nitrkl.timetable;
 
-import android.app.AlarmManager;
-import android.content.Context;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,6 +11,7 @@ import java.util.Date;
 public class Period {
     String mPeriodName;
     Calendar mTimeFrame;
+    int mPicture;
 
     // calendar instance
     // period name;
@@ -35,6 +33,7 @@ public class Period {
         int hour = 0 ;
         int minutes = 0;
 
+//        mPicture = picture;
         mPeriodName = periodName;
         mTimeFrame = Calendar.getInstance();
         mTimeFrame.setTime(dt);
