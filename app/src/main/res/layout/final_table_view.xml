@@ -9,145 +9,308 @@
     tools:showIn="@layout/activity_scrolling">
 
     <LinearLayout
-        android:layout_width="75dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <!--android:orientation="vertical" android:layout_width="75dp"-->
-        <!--android:layout_height="630dp"-->
-        <!--android:layout_gravity="center_vertical">-->
+        android:orientation="horizontal"
+        android:background="#eeeeee">
 
-        <TextView
-            android:layout_height="45dp"
-            android:layout_width="match_parent"
-            android:text="Time"
-            android:textColor="#000000"
-            android:textAlignment="center"
-            android:background="#6a91fb"
-            android:textSize="25dp"
-            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_header" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="7 A.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <!-- TextView
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:text="Time"
+                android:textColor="#000000"
+                android:textAlignment="center"
+                android:background="#6a91fb"
+                android:textSize="25dp"
+                android:layout_weight="1" /-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" />
+
+            <!-- TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="7 A.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="8 A.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="8 A.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="9 A.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="9 A.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="10 A.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="10 A.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="11 A.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="11 A.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="12 P.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="12 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="1 P.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="1 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="2 P.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="2 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="3 P.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="3 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="4 P.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="4 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="5 P.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="5 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="6 P.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="6 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="7 P.M."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#2b0388"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="7 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" /-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:text="Time Eswar"
+                android:textColor="#000000"
+                android:textAlignment="center"
+                android:background="#6a91fb"
+                android:textSize="25dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="7 A.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="8 A.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="9 A.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="10 A.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="11 A.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="12 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="1 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="2 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="3 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="4 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="5 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="6 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="7 P.M."
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#2b0388"
+                android:layout_weight="1" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
