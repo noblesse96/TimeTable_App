@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -17,6 +19,12 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.final_table_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        View rootView = findViewById(R.id.time_table);
+        LinearLayout timeBlocks = (LinearLayout) rootView.findViewById(R.id.time_blocks);
+        TextView textView = (TextView) timeBlocks.findViewById(R.id.time_slot_1);
+        textView.setText("7 a.m.");
+
 
         /*NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), new Period("OE", "11-10-2016", TimeSlot.DEBUG));
         NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), new Period("EC", "11-10-2016", TimeSlot.DEBUG));

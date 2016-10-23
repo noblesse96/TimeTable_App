@@ -12,13 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#eeeeee">
+        android:background="#eeeeee"
+        android:id="@+id/time_table">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:id="@+id/time_blocks">
 
             <include layout="@layout/tt_header" />
 
@@ -37,7 +39,7 @@
                 android:layout_height="1dp"
                 android:background="@android:color/holo_red_dark"/>
 
-            <include layout="@layout/tt_time_block" />
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_1"/>
             <include layout="@layout/tt_time_block" />
             <include layout="@layout/tt_time_block" />
             <include layout="@layout/tt_time_block" />
