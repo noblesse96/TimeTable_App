@@ -18,26 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--Splash Screen-->
-        <activity android:name=".SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.SplashScreen"/>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
-        <activity
-            android:name=".ScrollingActivity"
-            android:label="TimeTable" >
-            <intent-filter>
-                <action android:name="com.coderefer.androidsplashscreenexample.MAINACTIVITY" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-
-
-        <!--MainActivity>
+        <!--MainActivity-->
 
         <activity
             android:name=".ScrollingActivity"
@@ -46,9 +28,22 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity-->
+        </activity>
+
+        <!--Splash Screen-->
+
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+
+        </activity>
+
+
 
         <!-- Firebase notification message reception class. -->
 
