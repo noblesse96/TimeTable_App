@@ -3,10 +3,13 @@ package com.nitrkl.timetable;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.logging.Handler;
 
 public class SplashScreen extends Activity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,19 +17,29 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        Thread timerThread = new Thread(){
-            public void run(){
-                try{
-                    sleep(3000);
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                }finally{
-                    Intent intent = new Intent(SplashScreen.this, ScrollingActivity.class);
-                    startActivity(intent);
-                }
+//        Button Functioning
+        Button SplashButton = (Button)findViewById(R.id.SplashButton);
+        SplashButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View V){
+                Intent intent = new Intent(SplashScreen.this, ScrollingActivity.class);
+                startActivity(intent);
             }
-        };
-        timerThread.start();
+        });
+
+
+//        Thread timerThread = new Thread(){
+//            public void run(){
+//                try{
+//                    sleep(Constants.DEBUG_SPLASH_SCREEN_SLEEP_TIME);
+//                }catch(InterruptedException e){
+//                    e.printStackTrace();
+//                }finally{
+//                    Intent intent = new Intent(SplashScreen.this, ScrollingActivity.class);
+//                    startActivity(intent);
+//                }
+//            }
+//        };
+//        timerThread.start();
     }
 
     @Override

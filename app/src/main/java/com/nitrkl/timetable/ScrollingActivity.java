@@ -1,10 +1,13 @@
 package com.nitrkl.timetable;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -15,10 +18,11 @@ public class ScrollingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), new Period("OE", "11-10-2016", TimeSlot.DEBUG));
-//        NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), new Period("EC", "11-10-2016", TimeSlot.DEBUG));
+        /*NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), new Period("OE", "11-10-2016", TimeSlot.DEBUG));
+        NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), new Period("EC", "11-10-2016", TimeSlot.DEBUG));
 
-        //NotificationEventReceiver.setupAlarm(getApplicationContext());
+        NotificationEventReceiver.setupAlarm(getApplicationContext());
+        */
     }
 
     @Override
@@ -41,4 +45,5 @@ public class ScrollingActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

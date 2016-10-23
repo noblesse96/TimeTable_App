@@ -24,8 +24,8 @@
         android:layout_centerHorizontal="true"
         android:background="#000000" />
 
-</RelativeLayout>
-    <!--Button
+    <Button
+        android:id="@+id/SplashButton"
         android:text="Proceed"
         android:layout_width="100dp"
         android:layout_height="50dp"
@@ -34,4 +34,6 @@
         android:layout_alignEnd="@+id/imgLogo"
         android:layout_marginRight="76dp"
         android:layout_marginEnd="76dp"
-        android:layout_marginTop="400dp" /-->
+        android:layout_marginTop="400dp" />
+
+</RelativeLayout>
