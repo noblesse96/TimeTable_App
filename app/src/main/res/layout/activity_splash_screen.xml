@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:text="Loading...Please Wait..." />
+
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/timetable"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="#000000" />
+
+</RelativeLayout>
+    <!--Button
+        android:text="Proceed"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/imgLogo"
+        android:layout_alignEnd="@+id/imgLogo"
+        android:layout_marginRight="76dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginTop="400dp" /-->
