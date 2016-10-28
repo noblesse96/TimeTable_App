@@ -18,8 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
-        <!--MainActivity-->
+        <!-- MainActivity -->
 
         <activity
             android:name=".ScrollingActivity"
@@ -32,17 +31,15 @@
             </intent-filter>
         </activity>
 
-        <!--Splash Screen-->
+        <!-- Splash Screen -->
 
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
-
 
 
         <!-- Firebase notification message reception class. -->
