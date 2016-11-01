@@ -25,8 +25,8 @@
         android:background="#000000" />
 
     <Button
-        android:id="@+id/SplashButton"
-        android:text="Proceed"
+        android:id="@+id/SplashButton_Student"
+        android:text="Student"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
@@ -35,5 +35,13 @@
         android:layout_marginRight="76dp"
         android:layout_marginEnd="76dp"
         android:layout_marginTop="400dp" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/SplashButton_Teacher"
+        android:layout_alignRight="@+id/SplashButton_Student"
+        android:text="Teacher"
+        android:layout_marginTop="340dp"/>
 
 </RelativeLayout>
