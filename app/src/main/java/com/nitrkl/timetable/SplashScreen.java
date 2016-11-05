@@ -18,8 +18,16 @@ public class SplashScreen extends Activity {
         setContentView(R.layout.activity_splash_screen);
 
 //        Button Functioning
-        Button SplashButton = (Button)findViewById(R.id.SplashButton);
-        SplashButton.setOnClickListener(new View.OnClickListener(){
+        Button SplashButton_Teacher = (Button)findViewById(R.id.SplashButton_Teacher);
+        SplashButton_Teacher.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View V){
+                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button SplashButton_Student = (Button)findViewById(R.id.SplashButton_Student);
+        SplashButton_Student.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V){
                 Intent intent = new Intent(SplashScreen.this, ScrollingActivity.class);
                 startActivity(intent);

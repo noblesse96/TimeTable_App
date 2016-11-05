@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.nitrkl.timetable.ScrollingActivity"
+    tools:showIn="@layout/activity_scrolling">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#eeeeee"
+        android:id="@+id/teacher_time_table">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:id="@+id/time_blocks">
+
+            <include layout="@layout/tt_header" android:id="@+id/header_1" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_1"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_2"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_3"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_4"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_5"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_6"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_7"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_8"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_9"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_10"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_11"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_12"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include layout="@layout/tt_time_block" android:id="@+id/time_slot_13"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+
+        </LinearLayout>
+
+        <!-- Vertical Line-->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_bright"/>
+
+
+        <!--DYNAMIC LAYOUTS -->
+
+        <!--Monday Schedule-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/monday_blocks"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <include layout="@layout/tt_header" android:id="@+id/monday_class"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/no_class_monday"
+                layout="@layout/tt_test_block"
+                android:layout_height="244dp"
+                android:layout_width="match_parent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/OE_Monday"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Lunch"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Free_class_Monday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Thermal_Monday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Electronics_Monday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/GSM_Monday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+
+
+
+
+        </LinearLayout>
+
+        <!-- Vertical Line-->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_bright"/>
+
+
+        <!--Tuesday Schedule-->
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tuesday_blocks"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <include layout="@layout/tt_header" android:id="@+id/tuesday_class"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/no_class_tuesday"
+                layout="@layout/tt_test_block"
+                android:layout_height="244dp"
+                android:layout_width="match_parent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/OE_Tuesday"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Lunch"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Free_class_Tuesday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Electronics_Tuesday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Ergo_Tuesday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/GSM_Tuesday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+
+
+
+
+        </LinearLayout>
+
+        <!-- Vertical Line-->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_bright"/>
+
+
+        <!--Wednesday Schedule-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/wednesday_blocks"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <include layout="@layout/tt_header" android:id="@+id/wednesday_class"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/no_class_wednesday"
+                layout="@layout/tt_test_block"
+                android:layout_height="182dp"
+                android:layout_width="match_parent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Thermal_Wednesday"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Ec_Wednesday"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Lunch"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Free_class_Wednesday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Ansys_Wednesday"
+                android:layout_width="match_parent"
+                android:layout_height="182dp"
+                layout="@layout/tt_test_block"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+
+
+
+
+        </LinearLayout>
+
+        <!-- Vertical Line-->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_bright"/>
+
+        <!--Thursday Schedule-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/Thursday_blocks"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <include layout="@layout/tt_header" android:id="@+id/dynamic_class"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Free_block"
+                layout="@layout/tt_test_block"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Ergo_lab"
+                layout="@layout/tt_test_block"
+                android:layout_height="182dp"
+                android:layout_width="match_parent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Free_class_Thursday"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Lunch"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Ec_Thursday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Ergo_Thursday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Free_class_Thursday_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/GSM_Thursday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+
+
+
+
+        </LinearLayout>
+
+        <!-- Vertical Line-->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_bright"/>
+
+        <!--Friday Schedule-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/Friday_blocks"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <include layout="@layout/tt_header" android:id="@+id/dynamic_class"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Free_block"
+                layout="@layout/tt_test_block"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Pd_lab_Friday"
+                layout="@layout/tt_test_block"
+                android:layout_height="182dp"
+                android:layout_width="match_parent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/OE_Friday"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Lunch"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Ergo_Friday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Thermal_Friday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/Free_class_Friday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+            <include android:id="@+id/GSM_Friday"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                layout="@layout/tt_test_block"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_red_dark"/>
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
+
