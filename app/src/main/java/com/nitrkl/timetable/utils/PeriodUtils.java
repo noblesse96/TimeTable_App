@@ -6,9 +6,11 @@ package com.nitrkl.timetable.utils;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.alamkanak.weekview.WeekViewEvent;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.nitrkl.timetable.objects.Period;
 
@@ -90,6 +92,13 @@ public class PeriodUtils {
         }
 
         return events;
+    }
+
+    public static void subscribeToEvents(@NonNull Period period) {
+        if (period.getCourseId() == null) {
+            return;
+        }
+        FirebaseMessaging.getInstance().subscribeToTopic(period.getCourseId());
     }
 
 }

@@ -40,6 +40,9 @@ public class Period {
     @SerializedName("color")
     private String mColor;
 
+    @SerializedName("courseId")
+    private String mCourseId;
+
     /**
      * Gets the value of mPeriodName of the instance.
      *
@@ -85,45 +88,13 @@ public class Period {
         return mColor;
     }
 
-    @SuppressLint("SimpleDateFormat")
-    public WeekViewEvent toWeekViewEvent(){
-
-        // Parse time.
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        Date start = new Date();
-        Date end = new Date();
-        try {
-            start = sdf.parse(mStartTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        try {
-            end = sdf.parse(mEndTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        // Initialize start and end time.
-        Calendar now = Calendar.getInstance();
-        Calendar startTime = (Calendar) now.clone();
-        startTime.setTimeInMillis(start.getTime());
-        startTime.set(Calendar.YEAR, now.get(Calendar.YEAR));
-        startTime.set(Calendar.MONTH, now.get(Calendar.MONTH));
-        startTime.set(Calendar.DAY_OF_WEEK, mDayOfWeek);
-        Calendar endTime = (Calendar) startTime.clone();
-        endTime.setTimeInMillis(end.getTime());
-        endTime.set(Calendar.YEAR, startTime.get(Calendar.YEAR));
-        endTime.set(Calendar.MONTH, startTime.get(Calendar.MONTH));
-        endTime.set(Calendar.DAY_OF_WEEK, mDayOfWeek);
-
-        // Create an week view event.
-        WeekViewEvent weekViewEvent = new WeekViewEvent();
-        weekViewEvent.setName(mPeriodName);
-        weekViewEvent.setStartTime(startTime);
-        weekViewEvent.setEndTime(endTime);
-//        weekViewEvent.setColor(Color.parseColor(getColor()));
-
-        return weekViewEvent;
+    /**
+     * Gets the value of mCourseId of the instance.
+     *
+     * @return {java.lang.String}
+     */
+    public String getCourseId() {
+        return mCourseId;
     }
 
 }
