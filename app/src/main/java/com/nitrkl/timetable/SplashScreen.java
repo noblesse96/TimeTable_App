@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.logging.Handler;
+import com.nitrkl.timetable.ui.StudentActivity;
+import com.nitrkl.timetable.ui.TeacherActivity;
 
 public class SplashScreen extends Activity {
 
@@ -21,7 +22,7 @@ public class SplashScreen extends Activity {
         Button SplashButton_Teacher = (Button)findViewById(R.id.SplashButton_Teacher);
         SplashButton_Teacher.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V){
-                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                Intent intent = new Intent(SplashScreen.this, TeacherActivity.class);
                 startActivity(intent);
             }
         });
@@ -29,25 +30,10 @@ public class SplashScreen extends Activity {
         Button SplashButton_Student = (Button)findViewById(R.id.SplashButton_Student);
         SplashButton_Student.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V){
-                Intent intent = new Intent(SplashScreen.this, ScrollingActivity.class);
+                Intent intent = new Intent(SplashScreen.this, StudentActivity.class);
                 startActivity(intent);
             }
         });
-
-
-//        Thread timerThread = new Thread(){
-//            public void run(){
-//                try{
-//                    sleep(Constants.DEBUG_SPLASH_SCREEN_SLEEP_TIME);
-//                }catch(InterruptedException e){
-//                    e.printStackTrace();
-//                }finally{
-//                    Intent intent = new Intent(SplashScreen.this, ScrollingActivity.class);
-//                    startActivity(intent);
-//                }
-//            }
-//        };
-//        timerThread.start();
     }
 
     @Override

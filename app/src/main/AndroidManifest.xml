@@ -21,7 +21,7 @@
         <!-- MainActivity -->
 
         <activity
-            android:name=".ScrollingActivity"
+            android:name=".ui.TeacherActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -31,6 +31,16 @@
             </intent-filter>
         </activity>
 
+        <!-- StudentActivity -->
+        <activity
+            android:name=".ui.StudentActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <!-- Splash Screen -->
 
         <activity android:name=".SplashScreen">
@@ -66,7 +76,7 @@
             android:name=".NotificationActivity"
             android:label="jingalala"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity"></activity>
+
     </application>
 
 </manifest>
