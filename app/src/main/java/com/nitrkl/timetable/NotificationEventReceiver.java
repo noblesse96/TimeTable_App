@@ -30,7 +30,7 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
                 alarmIntent);
     }
 
-    public static void setUpPeriodAlarm(Context context, Period period) {
+    /*public static void setUpPeriodAlarm(Context context, Period period) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         Log.i("TDEEE", period.mTimeFrame.toString());
@@ -41,7 +41,7 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
         // Figure out a weekly alarm
          alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, period.mTimeFrame.getTimeInMillis(), Constants.WEEKLY_NOTIFICATION_TIME_PERIOD / Constants.DEBUG_BUILD_TIME_PERIOD_OFFSET, alarmIntent);
 
-    }
+    }*/
 
     @Override
     public void onReceive(Context context, Intent intent) {

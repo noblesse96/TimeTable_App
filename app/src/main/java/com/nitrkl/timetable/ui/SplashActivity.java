@@ -1,15 +1,25 @@
-package com.nitrkl.timetable;
+/**
+ * Copyright 2016 GwynnieBee Inc.
+ */
 
-import android.app.Activity;
+package com.nitrkl.timetable.ui;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.nitrkl.timetable.ui.StudentActivity;
-import com.nitrkl.timetable.ui.TeacherActivity;
+import com.nitrkl.timetable.R;
 
-public class SplashScreen extends Activity {
+/**
+ * The Splash Page activity which is the first activity shown.
+ *
+ * @author eswar
+ * @version 1.00
+ * @since 16/11/2016
+ */
+public class SplashActivity extends AppCompatActivity {
 
 
     @Override
@@ -22,7 +32,7 @@ public class SplashScreen extends Activity {
         Button SplashButton_Teacher = (Button)findViewById(R.id.SplashButton_Teacher);
         SplashButton_Teacher.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V){
-                Intent intent = new Intent(SplashScreen.this, TeacherActivity.class);
+                Intent intent = new Intent(SplashActivity.this, TeacherActivity.class);
                 startActivity(intent);
             }
         });
@@ -30,7 +40,7 @@ public class SplashScreen extends Activity {
         Button SplashButton_Student = (Button)findViewById(R.id.SplashButton_Student);
         SplashButton_Student.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V){
-                Intent intent = new Intent(SplashScreen.this, StudentActivity.class);
+                Intent intent = new Intent(SplashActivity.this, StudentActivity.class);
                 startActivity(intent);
             }
         });

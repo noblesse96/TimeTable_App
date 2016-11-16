@@ -1,7 +1,15 @@
-package com.nitrkl.timetable;
+/**
+ * Copyright 2016 GwynnieBee Inc.
+ */
+
+package com.nitrkl.timetable.utils;
 
 /**
- * Created by no-games on 11-10-2016.
+ * The constants that are used across the app.
+ *
+ * @author eswar
+ * @version 1.00
+ * @since 16/11/2016
  */
 public class Constants {
 
@@ -10,4 +18,7 @@ public class Constants {
     public static final int DEBUG_BUILD_TIME_PERIOD_OFFSET = 1680;
 
     public static final int DEBUG_SPLASH_SCREEN_SLEEP_TIME = 3000;
+
+    private Constants() {
+    }
 }

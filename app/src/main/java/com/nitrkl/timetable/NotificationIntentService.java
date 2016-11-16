@@ -37,7 +37,6 @@ public class NotificationIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Period period;
         Log.d(getClass().getSimpleName(), "onHandleIntent, started handling a notification event");
         try {
             String action = intent.getAction();
