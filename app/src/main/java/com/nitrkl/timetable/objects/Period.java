@@ -4,17 +4,7 @@
 
 package com.nitrkl.timetable.objects;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.util.Log;
-
-import com.alamkanak.weekview.WeekViewEvent;
 import com.google.gson.annotations.SerializedName;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Period object as per the requirements.
