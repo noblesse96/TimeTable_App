@@ -4,8 +4,15 @@
 
 package com.nitrkl.timetable.ui;
 
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.graphics.RectF;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekViewEvent;
 import com.android.volley.AuthFailureError;
@@ -17,6 +24,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nitrkl.timetable.R;
 import com.nitrkl.timetable.objects.Period;
 import com.nitrkl.timetable.utils.DataProvider;
 import com.nitrkl.timetable.utils.PeriodUtils;
@@ -41,6 +49,8 @@ import java.util.Map;
 public class TeacherActivity extends BaseActivity {
 
     private static final String TAG = "TeacherActivity ";
+    private int mEditStart = -1;
+    private int mEditEnd = -1;
 
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
@@ -61,10 +71,80 @@ public class TeacherActivity extends BaseActivity {
     }
 
     @Override
-    public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
-        Log.i("tooch", event.getId() + "");
+    public void onEventLongPress(final WeekViewEvent event, RectF eventRect) {
         if (event.getId() == 1233333) {
-            classUpdate(event);
+            Dialog dialog = new Dialog(TeacherActivity.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(true);
+            dialog.setContentView(R.layout.teacher_edit);
+            dialog.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    classUpdate(event);
+                }
+            });
+
+            final TextView start = (TextView) dialog.findViewById(R.id.start_time);
+            final TextView end = (TextView) dialog.findViewById(R.id.end_time);
+            start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Calendar mcurrentTime = Calendar.getInstance();
+                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                    int minute = mcurrentTime.get(Calendar.MINUTE);
+                    TimePickerDialog mTimePicker;
+                    mTimePicker = new TimePickerDialog(TeacherActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                            mEditStart = selectedHour * 100 + selectedMinute;
+                            if (mEditEnd != -1 && mEditEnd < mEditStart) {
+                                Toast.makeText(getApplicationContext(), "Class cannot start after it has ended!!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                start.setText(selectedHour + " : " + selectedMinute);
+                            }
+                        }
+                    }, hour, minute, true);
+                    mTimePicker.setTitle("Select Class Start Time");
+                    mTimePicker.show();
+                }
+            });
+
+            end.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Calendar mcurrentTime = Calendar.getInstance();
+                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                    int minute = mcurrentTime.get(Calendar.MINUTE);
+                    TimePickerDialog mTimePicker;
+                    mTimePicker = new TimePickerDialog(TeacherActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                            mEditEnd = selectedHour * 100 + selectedMinute;
+                            if (mEditStart != -1 && mEditEnd < mEditStart) {
+                                Toast.makeText(getApplicationContext(), "Class cannot end before it even started!!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                end.setText(selectedHour + " : " + selectedMinute);
+                            }
+                        }
+                    }, hour, minute, true);
+                    mTimePicker.setTitle("Select Class End Time");
+                    mTimePicker.show();
+                }
+            });
+
+            dialog.findViewById(R.id.btn_reschedule).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Calendar now = Calendar.getInstance();
+                    int cur = now.get(Calendar.HOUR_OF_DAY) * 100 + now.get(Calendar.MINUTE);
+                    if (mEditEnd == -1 || mEditStart == -1 || mEditEnd < mEditStart) {
+                        Toast.makeText(getApplicationContext(), "Please Select proper class timings!!", Toast.LENGTH_SHORT).show();
+                    } else if (mEditStart < cur) {
+                        Toast.makeText(getApplicationContext(), "Class should have already started!!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            dialog.show();
         }
     }
 
@@ -111,7 +191,6 @@ public class TeacherActivity extends BaseActivity {
         JSONObject ob3 = new JSONObject();
         Calendar start = event.getStartTime();
         Calendar end = event.getEndTime();
-        Log.i("Bhooyah", start.getTime().toString());
 
         try {
             obj.put("to", "/topics/c_03_004");
