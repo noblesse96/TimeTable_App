@@ -13,6 +13,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.nitrkl.timetable.objects.Period;
+import com.nitrkl.timetable.ui.SplashActivity;
 import com.nitrkl.timetable.utils.Preference;
 
 import java.util.Calendar;
@@ -99,7 +100,7 @@ public class TimeTableFirebaseMessagingService extends FirebaseMessagingService 
         int notificationId = (int) (Math.random() * 10);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 notificationId,
-                new Intent(this, NotificationActivity.class),
+                new Intent(this, SplashActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK),
                 PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);
         builder.setDeleteIntent(NotificationEventReceiver.getDeleteIntent(this));

@@ -73,11 +73,6 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".NotificationActivity"
-            android:label="jingalala"
-            android:theme="@style/AppTheme.NoActionBar" />
-
     </application>
 
 </manifest>
