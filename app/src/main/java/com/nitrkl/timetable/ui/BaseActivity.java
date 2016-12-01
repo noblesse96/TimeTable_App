@@ -4,6 +4,7 @@
 
 package com.nitrkl.timetable.ui;
 
+import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -122,14 +123,21 @@ public class BaseActivity extends AppCompatActivity implements WeekView.EventCli
             case R.id.action_logout:
                 Preference.getInstance(getApplicationContext()).clearLogin();
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("c_03_004");
+                goToSplash();
                 return true;
             case R.id.action_clear_logout:
                 Preference.getInstance(getApplicationContext()).clearComplete();
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("c_03_004");
+                goToSplash();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goToSplash() {
+        Intent intent = new Intent(BaseActivity.this, SplashActivity.class);
+        startActivity(intent);
     }
 
     /**
