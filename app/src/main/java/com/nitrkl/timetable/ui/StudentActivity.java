@@ -36,9 +36,9 @@ public class StudentActivity extends BaseActivity {
         }.getType();
         List<com.nitrkl.timetable.objects.Period> periodList = new Gson().fromJson(DataProvider.STUDENT_TIME_TABLE, listType);
         for (Period period : periodList) {
-            Log.d(TAG, new Gson().toJson(PeriodUtils.getAllPeriodEvents(period, newYear, newMonth)));
+//            Log.d(TAG, new Gson().toJson(PeriodUtils.getAllPeriodEvents(period, newYear, newMonth, getApplicationContext())));
             PeriodUtils.subscribeToEvents(period);
-            List<WeekViewEvent> tempEvents = PeriodUtils.getAllPeriodEvents(period, newYear, newMonth);
+            List<WeekViewEvent> tempEvents = PeriodUtils.getAllPeriodEvents(period, newYear, newMonth, getApplicationContext());
             for (WeekViewEvent weekViewEvent : tempEvents) {
                 events.add(weekViewEvent);
             }

@@ -5,6 +5,7 @@
 package com.nitrkl.timetable.utils;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -33,8 +34,9 @@ public class PeriodUtils {
     private static final String TAG = "PeriodUtils";
 
     @SuppressLint("SimpleDateFormat")
-    public static List<WeekViewEvent> getAllPeriodEvents(Period period, int newYear, int newMonth) {
+    public static List<WeekViewEvent> getAllPeriodEvents(Period period, int newYear, int newMonth, Context context) {
         List<WeekViewEvent> events = new ArrayList<>();
+        Preference preference = Preference.getInstance(context);
 
         // Parse time.
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
@@ -83,6 +85,32 @@ public class PeriodUtils {
             WeekViewEvent weekViewEvent = new WeekViewEvent();
             if ("c_03_004".equals(period.getCourseId())) {
                 weekViewEvent.setId(1233333);
+            }
+            if (preference.isClassChanged(startTime.getTimeInMillis())) {
+                Period changedPeriod = preference.getChangedClass(startTime.getTimeInMillis(), null);
+                if (changedPeriod == null) { // class cancelled
+                    continue;
+                } else {
+                    // do something else.
+                    try {
+                        start = sdf.parse(changedPeriod.getStartTime());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        end = sdf.parse(changedPeriod.getEndTime());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    startTime.setTimeInMillis(start.getTime());
+                    startTime.set(Calendar.YEAR, newYear);
+                    startTime.set(Calendar.MONTH, newMonth - 1);
+                    startTime.set(Calendar.DAY_OF_MONTH, day);
+                    endTime.setTimeInMillis(end.getTime());
+                    endTime.set(Calendar.YEAR, newYear);
+                    endTime.set(Calendar.MONTH, newMonth - 1);
+                    endTime.set(Calendar.DAY_OF_MONTH, day);
+                }
             }
             weekViewEvent.setName(period.getPeriodName());
             weekViewEvent.setStartTime(startTime);

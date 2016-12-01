@@ -13,6 +13,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.nitrkl.timetable.objects.Period;
+import com.nitrkl.timetable.utils.Preference;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -51,22 +52,31 @@ public class TimeTableFirebaseMessagingService extends FirebaseMessagingService 
         String title = "Huhuhu";
         String text = "The class is about to start";
         String to = null;
+        String till = null;
         String start;
         Calendar dt = Calendar.getInstance();
+        Calendar st = Calendar.getInstance();
         if (message != null) {
             if ("cancelled".equals(message.get("action"))) {
-                title = "Class Cancelled ";
+                title = " Class Cancelled";
             } else if ("re-scheduled".equals(message.get("action"))) {
-                title = "Class Re-Scheduled ";
+                title = " Class Re-Scheduled";
                 try {
-                    int reStart = Integer.parseInt(message.get("re_start"));
-                    to = ((int) reStart / 100) + ":" + (reStart % 100);
+                    st.setTimeInMillis(Long.parseLong(message.get("re_end")));
+                    till = st.get(Calendar.HOUR_OF_DAY) + ":" + st.get(Calendar.MINUTE);
+                    st.setTimeInMillis(Long.parseLong(message.get("re_start")));
+                    to = st.get(Calendar.HOUR_OF_DAY) + ":" + st.get(Calendar.MINUTE);
                 } catch (Exception e) {}
             }
             try {
                 Period period = new Gson().fromJson(message.get("period"), Period.class);
-                title += period.getPeriodName();
+                title = period.getPeriodName() + title;
                 start = message.get("start");
+                if (till != null && to != null) {
+                    period.setStartTime(to);
+                    period.setEndTime(till);
+                }
+                Preference.getInstance(getApplicationContext()).saveChangedClass(start, period);
                 dt.setTimeInMillis(Long.parseLong(start));
                 start = dt.getTime().toString().replaceAll("/\\s+GMT.*/", "");
                 if (to != null) {

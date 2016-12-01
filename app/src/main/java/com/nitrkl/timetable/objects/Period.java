@@ -87,4 +87,11 @@ public class Period {
         return mCourseId;
     }
 
+    public void setStartTime(String startTime) {
+        mStartTime = startTime;
+    }
+
+    public void setEndTime(String endTime) {
+        mEndTime = endTime;
+    }
 }

@@ -52,6 +52,8 @@ public class TeacherActivity extends BaseActivity {
     private static final String TAG = "TeacherActivity ";
     private int mEditStart = -1;
     private int mEditEnd = -1;
+    private Calendar mStartCal;
+    private Calendar mEndCal;
 
     enum Actions {
         CANCEL,
@@ -67,7 +69,7 @@ public class TeacherActivity extends BaseActivity {
         List<com.nitrkl.timetable.objects.Period> periodList = new Gson().fromJson(DataProvider.TEACHER_TIME_TABLE, listType);
         for (Period period : periodList) {
 //            Log.d(TAG, new Gson().toJson(PeriodUtils.getAllPeriodEvents(period, newYear, newMonth)));
-            List<WeekViewEvent> tempEvents = PeriodUtils.getAllPeriodEvents(period, newYear, newMonth);
+            List<WeekViewEvent> tempEvents = PeriodUtils.getAllPeriodEvents(period, newYear, newMonth, getApplicationContext());
             for (WeekViewEvent weekViewEvent : tempEvents) {
                 events.add(weekViewEvent);
             }
@@ -109,13 +111,15 @@ public class TeacherActivity extends BaseActivity {
             start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Calendar mcurrentTime = Calendar.getInstance();
-                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                    int minute = mcurrentTime.get(Calendar.MINUTE);
+                    mStartCal = Calendar.getInstance();
+                    int hour = mStartCal.get(Calendar.HOUR_OF_DAY);
+                    int minute = mStartCal.get(Calendar.MINUTE);
                     TimePickerDialog mTimePicker;
                     mTimePicker = new TimePickerDialog(TeacherActivity.this, new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                            mStartCal.set(Calendar.HOUR_OF_DAY, selectedHour);
+                            mStartCal.set(Calendar.MINUTE, selectedMinute);
                             mEditStart = selectedHour * 100 + selectedMinute;
                             if (mEditEnd != -1 && mEditEnd < mEditStart) {
                                 Toast.makeText(getApplicationContext(), "Class cannot start after it has ended!!", Toast.LENGTH_SHORT).show();
@@ -132,13 +136,15 @@ public class TeacherActivity extends BaseActivity {
             end.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Calendar mcurrentTime = Calendar.getInstance();
-                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                    int minute = mcurrentTime.get(Calendar.MINUTE);
+                    mEndCal = Calendar.getInstance();
+                    int hour = mStartCal.get(Calendar.HOUR_OF_DAY);
+                    int minute = mStartCal.get(Calendar.MINUTE);
                     TimePickerDialog mTimePicker;
                     mTimePicker = new TimePickerDialog(TeacherActivity.this, new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                            mEndCal.set(Calendar.HOUR_OF_DAY, selectedHour);
+                            mEndCal.set(Calendar.MINUTE, selectedMinute);
                             mEditEnd = selectedHour * 100 + selectedMinute;
                             if (mEditStart != -1 && mEditEnd < mEditStart) {
                                 Toast.makeText(getApplicationContext(), "Class cannot end before it even started!!", Toast.LENGTH_SHORT).show();
@@ -177,6 +183,7 @@ public class TeacherActivity extends BaseActivity {
      * update the class.
      */
     private void classUpdate(WeekViewEvent event, Actions action, final Dialog dialog) {
+        Log.i(TAG, "class update called : " + new Gson().toJson(event));
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getApplication());
         String url = "https://fcm.googleapis.com/fcm/send";
@@ -228,8 +235,8 @@ public class TeacherActivity extends BaseActivity {
             } else {
                 ob2.put("title", "Class re-scheduled");
                 ob2.put("action", "re-scheduled");
-                ob2.put("re_start", mEditStart);
-                ob2.put("re_end", mEditEnd);
+                ob2.put("re_start", mStartCal.getTimeInMillis());
+                ob2.put("re_end", mEndCal.getTimeInMillis());
             }
             ob3.put("name", "GSM");
             ob3.put("dayOfWeek", start.get(Calendar.DAY_OF_MONTH));
