@@ -49,14 +49,25 @@ public class TimeTableFirebaseMessagingService extends FirebaseMessagingService 
     private void processStartNotification(HashMap<String, String> message) {
         String title = "Huhuhu";
         String text = "The class is about to start";
+        String to = null;
         if (message != null) {
             if ("cancelled".equals(message.get("action"))) {
                 title = "Class Cancelled ";
+            } else if ("re-scheduled".equals(message.get("action"))) {
+                title = "Class Re-Scheduled ";
+                try {
+                    int reStart = Integer.parseInt(message.get("re_start"));
+                    to = ((int) reStart / 100) + ":" + (reStart % 100);
+                } catch (Exception e) {}
             }
             try {
                 Period period = new Gson().fromJson(message.get("period"), Period.class);
                 title += period.getPeriodName();
-                text = period.getPeriodName() + " class on " + message.get("start") + " has been " + message.get("action");
+                if (to != null) {
+                    text = "To: " + to + " From: " + message.get("start");
+                } else {
+                    text = period.getPeriodName() + " class on " + message.get("start") + " has been " + message.get("action");
+                }
             } catch (Exception e) {
                 Log.e(TAG, "unable to decode the period object sent.");
             }

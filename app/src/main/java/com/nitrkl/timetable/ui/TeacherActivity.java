@@ -52,6 +52,11 @@ public class TeacherActivity extends BaseActivity {
     private int mEditStart = -1;
     private int mEditEnd = -1;
 
+    enum Actions {
+        CANCEL,
+        RESCHEDULE
+    }
+
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         Log.i(TAG, "The onMonthChange method has been called.");
@@ -73,14 +78,15 @@ public class TeacherActivity extends BaseActivity {
     @Override
     public void onEventLongPress(final WeekViewEvent event, RectF eventRect) {
         if (event.getId() == 1233333) {
-            Dialog dialog = new Dialog(TeacherActivity.this);
+            final Dialog dialog = new Dialog(TeacherActivity.this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setCancelable(true);
             dialog.setContentView(R.layout.teacher_edit);
             dialog.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    classUpdate(event);
+                    classUpdate(event, Actions.CANCEL);
+                    dialog.dismiss();
                 }
             });
 
@@ -141,6 +147,9 @@ public class TeacherActivity extends BaseActivity {
                         Toast.makeText(getApplicationContext(), "Please Select proper class timings!!", Toast.LENGTH_SHORT).show();
                     } else if (mEditStart < cur) {
                         Toast.makeText(getApplicationContext(), "Class should have already started!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        classUpdate(event, Actions.RESCHEDULE);
+                        dialog.dismiss();
                     }
                 }
             });
@@ -151,12 +160,12 @@ public class TeacherActivity extends BaseActivity {
     /**
      * update the class.
      */
-    private void classUpdate(WeekViewEvent event) {
+    private void classUpdate(WeekViewEvent event, Actions action) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getApplication());
         String url = "https://fcm.googleapis.com/fcm/send";
         // Request a string response from the provided URL.
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, getJSON(event),
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, getJSON(event, action),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -185,7 +194,7 @@ public class TeacherActivity extends BaseActivity {
      *
      * @return {{@link JSONObject}}.
      */
-    private JSONObject getJSON(WeekViewEvent event) {
+    private JSONObject getJSON(WeekViewEvent event, Actions action) {
         JSONObject obj = new JSONObject();
         JSONObject ob2 = new JSONObject();
         JSONObject ob3 = new JSONObject();
@@ -195,8 +204,15 @@ public class TeacherActivity extends BaseActivity {
         try {
             obj.put("to", "/topics/c_03_004");
             obj.put("priority", "high");
-            ob2.put("title", "Class cancelled");
-            ob2.put("action", "cancelled");
+            if (action == Actions.CANCEL) {
+                ob2.put("title", "Class cancelled");
+                ob2.put("action", "cancelled");
+            } else {
+                ob2.put("title", "Class re-scheduled");
+                ob2.put("action", "re-scheduled");
+                ob2.put("re_start", mEditStart);
+                ob2.put("re_end", mEditEnd);
+            }
             ob3.put("name", "GSM");
             ob3.put("dayOfWeek", start.get(Calendar.DAY_OF_MONTH));
             ob3.put("startTime", start.get(Calendar.HOUR_OF_DAY) + ":" + start.get(Calendar.MINUTE));
