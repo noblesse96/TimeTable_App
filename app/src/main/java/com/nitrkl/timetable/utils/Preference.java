@@ -45,10 +45,16 @@ public class Preference {
         return sPreference;
     }
 
-    public void saveChangedClass(@NonNull String time, @NonNull Period period) {
-        Log.i("Pref", "Saving to preference " + time + " period " + new Gson().toJson(period));
+    public void saveChangedClass(@NonNull String time, Period period) {
+        String obj;
+        if (period == null) {
+            obj = "";
+        } else {
+            obj = new Gson().toJson(period);
+        }
+        Log.i("Pref", "Saving to preference " + time + " period " + obj);
         mSharedPreferences.edit()
-                .putString(time, new Gson().toJson(period))
+                .putString(time, obj)
                 .apply();
     }
 

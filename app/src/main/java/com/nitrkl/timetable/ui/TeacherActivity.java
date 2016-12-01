@@ -194,12 +194,13 @@ public class TeacherActivity extends BaseActivity {
                     public void onResponse(JSONObject response) {
                         // Display the first 500 characters of the response string.
                         Log.i("RESPONSE", response.toString());
+                        goToSplash();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("RESPONSE", error.toString());
-                Toast.makeText(getApplicationContext(), "OOPS something has gone wrong!! Try Again....", Toast.LENGTH_SHORT).show();
+                goToSplash();
             }
         }) {
             @Override

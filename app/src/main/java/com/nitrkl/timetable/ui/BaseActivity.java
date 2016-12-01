@@ -135,7 +135,7 @@ public class BaseActivity extends AppCompatActivity implements WeekView.EventCli
         return super.onOptionsItemSelected(item);
     }
 
-    private void goToSplash() {
+    public void goToSplash() {
         Intent intent = new Intent(BaseActivity.this, SplashActivity.class);
         startActivity(intent);
     }

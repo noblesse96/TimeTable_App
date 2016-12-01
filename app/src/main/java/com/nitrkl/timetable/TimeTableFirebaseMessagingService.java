@@ -76,8 +76,10 @@ public class TimeTableFirebaseMessagingService extends FirebaseMessagingService 
                 if (till != null && to != null) {
                     period.setStartTime(to);
                     period.setEndTime(till);
+                    Preference.getInstance(getApplicationContext()).saveChangedClass(start, period);
+                } else {
+                    Preference.getInstance(getApplicationContext()).saveChangedClass(start, null);
                 }
-                Preference.getInstance(getApplicationContext()).saveChangedClass(start, period);
                 dt.setTimeInMillis(Long.parseLong(start));
                 start = dt.getTime().toString().replaceAll("/\\s+GMT.*/", "");
                 if (to != null) {
