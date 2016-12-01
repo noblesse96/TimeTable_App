@@ -6,6 +6,7 @@ package com.nitrkl.timetable.ui;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.graphics.RectF;
 import android.util.Log;
 import android.view.View;
@@ -88,8 +89,17 @@ public class TeacherActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     classUpdate(event, Actions.CANCEL, dialog);
-                    dialog.findViewById(R.id.btn_cancel).setClickable(false);
-                    dialog.findViewById(R.id.btn_reschedule).setClickable(false);
+                    dialog.findViewById(R.id.btn_cancel).setOnClickListener(null);
+                    dialog.findViewById(R.id.btn_reschedule).setOnClickListener(null);
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogI) {
+                    dialog.findViewById(R.id.btn_cancel).setOnClickListener(null);
+                    dialog.findViewById(R.id.btn_reschedule).setOnClickListener(null);
                 }
             });
 
@@ -152,8 +162,9 @@ public class TeacherActivity extends BaseActivity {
                         Toast.makeText(getApplicationContext(), "Class should have already started!!", Toast.LENGTH_SHORT).show();
                     } else {
                         classUpdate(event, Actions.RESCHEDULE, dialog);
-                        dialog.findViewById(R.id.btn_cancel).setClickable(false);
-                        dialog.findViewById(R.id.btn_reschedule).setClickable(false);
+                        dialog.findViewById(R.id.btn_cancel).setOnClickListener(null);
+                        dialog.findViewById(R.id.btn_reschedule).setOnClickListener(null);
+                        dialog.dismiss();
                     }
                 }
             });
@@ -175,17 +186,12 @@ public class TeacherActivity extends BaseActivity {
                     public void onResponse(JSONObject response) {
                         // Display the first 500 characters of the response string.
                         Log.i("RESPONSE", response.toString());
-                        dialog.findViewById(R.id.btn_cancel).setOnClickListener(null);
-                        dialog.findViewById(R.id.btn_reschedule).setOnClickListener(null);
-                        dialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("RESPONSE", error.toString());
                 Toast.makeText(getApplicationContext(), "OOPS something has gone wrong!! Try Again....", Toast.LENGTH_SHORT).show();
-                dialog.findViewById(R.id.btn_cancel).setClickable(true);
-                dialog.findViewById(R.id.btn_reschedule).setClickable(true);
             }
         }) {
             @Override
@@ -231,7 +237,7 @@ public class TeacherActivity extends BaseActivity {
             ob3.put("color", event.getColor());
             ob3.put("courseId", "c_03_004");
             ob2.put("period", ob3);
-            ob2.put("start", start.getTime().toString());
+            ob2.put("start", start.getTimeInMillis());
             obj.put("data", ob2);
         } catch (JSONException ex) {}
         return obj;

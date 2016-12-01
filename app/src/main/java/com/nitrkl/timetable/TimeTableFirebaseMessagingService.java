@@ -14,6 +14,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.nitrkl.timetable.objects.Period;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 /**
@@ -51,6 +52,7 @@ public class TimeTableFirebaseMessagingService extends FirebaseMessagingService 
         String text = "The class is about to start";
         String to = null;
         String start;
+        Calendar dt = Calendar.getInstance();
         if (message != null) {
             if ("cancelled".equals(message.get("action"))) {
                 title = "Class Cancelled ";
@@ -65,6 +67,8 @@ public class TimeTableFirebaseMessagingService extends FirebaseMessagingService 
                 Period period = new Gson().fromJson(message.get("period"), Period.class);
                 title += period.getPeriodName();
                 start = message.get("start");
+                dt.setTimeInMillis(Long.parseLong(start));
+                Log.i("doola", dt.getTime().toString());
                 if (to != null) {
                     text = "To: " + to + " From: " + start;
                 } else {
