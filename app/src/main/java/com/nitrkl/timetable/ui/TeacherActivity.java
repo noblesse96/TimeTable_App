@@ -78,6 +78,8 @@ public class TeacherActivity extends BaseActivity {
     @Override
     public void onEventLongPress(final WeekViewEvent event, RectF eventRect) {
         if (event.getId() == 1233333) {
+            mEditStart = -1;
+            mEditEnd = -1;
             final Dialog dialog = new Dialog(TeacherActivity.this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setCancelable(true);
@@ -110,7 +112,7 @@ public class TeacherActivity extends BaseActivity {
                             }
                         }
                     }, hour, minute, true);
-                    mTimePicker.setTitle("Select Class Start Time");
+                    mTimePicker.setTitle("Start Class At");
                     mTimePicker.show();
                 }
             });
@@ -133,7 +135,7 @@ public class TeacherActivity extends BaseActivity {
                             }
                         }
                     }, hour, minute, true);
-                    mTimePicker.setTitle("Select Class End Time");
+                    mTimePicker.setTitle("End Class At");
                     mTimePicker.show();
                 }
             });
@@ -200,6 +202,7 @@ public class TeacherActivity extends BaseActivity {
         JSONObject ob3 = new JSONObject();
         Calendar start = event.getStartTime();
         Calendar end = event.getEndTime();
+        Log.i("Db", new Gson().toJson(event.toString()));
 
         try {
             obj.put("to", "/topics/c_03_004");

@@ -50,6 +50,7 @@ public class TimeTableFirebaseMessagingService extends FirebaseMessagingService 
         String title = "Huhuhu";
         String text = "The class is about to start";
         String to = null;
+        String start;
         if (message != null) {
             if ("cancelled".equals(message.get("action"))) {
                 title = "Class Cancelled ";
@@ -63,10 +64,11 @@ public class TimeTableFirebaseMessagingService extends FirebaseMessagingService 
             try {
                 Period period = new Gson().fromJson(message.get("period"), Period.class);
                 title += period.getPeriodName();
+                start = message.get("start");
                 if (to != null) {
-                    text = "To: " + to + " From: " + message.get("start");
+                    text = "To: " + to + " From: " + start;
                 } else {
-                    text = period.getPeriodName() + " class on " + message.get("start") + " has been " + message.get("action");
+                    text = period.getPeriodName() + " class on " + start + " has been " + message.get("action");
                 }
             } catch (Exception e) {
                 Log.e(TAG, "unable to decode the period object sent.");
