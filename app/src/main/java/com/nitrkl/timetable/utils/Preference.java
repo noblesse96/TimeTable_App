@@ -22,6 +22,7 @@ import com.nitrkl.timetable.objects.Period;
 public class Preference {
 
     private static final String PREF_KEY = "eswar.PREFERENCE_FILE_KEY";
+    private static final String LOGIN_MODE = "LOGIN_MODE";
 
     private static Preference sPreference = null;
 
@@ -60,6 +61,37 @@ public class Preference {
         String per = mSharedPreferences.getString(time + "", "");
         if ("".equals(per)) return null;
         return new Gson().fromJson(per, Period.class);
+    }
+
+    public void setTeacherMode() {
+        mSharedPreferences.edit()
+                .putString(LOGIN_MODE, "teacher")
+                .apply();
+    }
+    public void setStudentMode() {
+        mSharedPreferences.edit()
+                .putString(LOGIN_MODE, "student")
+                .apply();
+    }
+    public void clearLogin() {
+        mSharedPreferences
+                .edit()
+                .remove(LOGIN_MODE)
+                .commit();
+    }
+    public void clearComplete() {
+        mSharedPreferences
+                .edit()
+                .clear()
+                .commit();
+    }
+
+    public boolean isTeacherMode() {
+        return "teacher".equals(mSharedPreferences.getString(LOGIN_MODE, ""));
+    }
+
+    public boolean isStudentMode() {
+        return "student".equals(mSharedPreferences.getString(LOGIN_MODE, ""));
     }
 
 }

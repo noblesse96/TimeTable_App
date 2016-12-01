@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.nitrkl.timetable.R;
+import com.nitrkl.timetable.utils.Preference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,22 +45,42 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        Preference pref = Preference.getInstance(getApplicationContext());
+        if (pref.isStudentMode()) {
+            goToStudent();
+            return;
+        }
+        if (pref.isTeacherMode()) {
+            goToTeacher();
+            return;
+        }
+
 //        Button Functioning
         Button SplashButton_Teacher = (Button)findViewById(R.id.SplashButton_Teacher);
         SplashButton_Teacher.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V){
-                Intent intent = new Intent(SplashActivity.this, TeacherActivity.class);
-                startActivity(intent);
+                goToTeacher();
             }
         });
 
         Button SplashButton_Student = (Button)findViewById(R.id.SplashButton_Student);
         SplashButton_Student.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V){
-                Intent intent = new Intent(SplashActivity.this, StudentActivity.class);
-                startActivity(intent);
+                goToStudent();
             }
         });
+    }
+
+    private void goToStudent() {
+        Preference.getInstance(getApplicationContext()).setStudentMode();
+        Intent intent = new Intent(SplashActivity.this, StudentActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToTeacher() {
+        Preference.getInstance(getApplicationContext()).setTeacherMode();
+        Intent intent = new Intent(SplashActivity.this, TeacherActivity.class);
+        startActivity(intent);
     }
 
     @Override

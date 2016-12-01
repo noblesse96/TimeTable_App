@@ -16,7 +16,9 @@ import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.nitrkl.timetable.R;
+import com.nitrkl.timetable.utils.Preference;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -116,6 +118,14 @@ public class BaseActivity extends AppCompatActivity implements WeekView.EventCli
                     mWeekView.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics()));
                     mWeekView.setEventTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics()));
                 }
+                return true;
+            case R.id.action_logout:
+                Preference.getInstance(getApplicationContext()).clearLogin();
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("c_03_004");
+                return true;
+            case R.id.action_clear_logout:
+                Preference.getInstance(getApplicationContext()).clearComplete();
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("c_03_004");
                 return true;
         }
 
