@@ -88,6 +88,7 @@ public class TeacherActivity extends BaseActivity {
             dialog.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.i(TAG, "dialog cancel action.......");
                     classUpdate(event, Actions.CANCEL, dialog);
                     dialog.findViewById(R.id.btn_cancel).setOnClickListener(null);
                     dialog.findViewById(R.id.btn_reschedule).setOnClickListener(null);

@@ -68,7 +68,7 @@ public class TimeTableFirebaseMessagingService extends FirebaseMessagingService 
                 title += period.getPeriodName();
                 start = message.get("start");
                 dt.setTimeInMillis(Long.parseLong(start));
-                Log.i("doola", dt.getTime().toString());
+                start = dt.getTime().toString().replaceAll("/\\s+GMT.*/", "");
                 if (to != null) {
                     text = "To: " + to + " From: " + start;
                 } else {
