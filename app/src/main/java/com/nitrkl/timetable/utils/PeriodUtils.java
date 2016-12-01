@@ -59,7 +59,7 @@ public class PeriodUtils {
         int daysOfMonth = first.getActualMaximum(Calendar.DAY_OF_MONTH);
         int day = period.getDayOfWeek();
         int offset = startDayOfMonth - first.getFirstDayOfWeek(); // Ideal day is sunday.
-        Log.i(TAG, "First day of the month is - " + startDayOfMonth + " total days - " + daysOfMonth);
+//        Log.i(TAG, "First day of the month is - " + startDayOfMonth + " total days - " + daysOfMonth);
 
         day -= offset;
         if (day < 1) {
@@ -81,6 +81,9 @@ public class PeriodUtils {
 
             // Create an week view event.
             WeekViewEvent weekViewEvent = new WeekViewEvent();
+            if ("c_03_004".equals(period.getCourseId())) {
+                weekViewEvent.setId(1233333);
+            }
             weekViewEvent.setName(period.getPeriodName());
             weekViewEvent.setStartTime(startTime);
             weekViewEvent.setEndTime(endTime);
@@ -88,7 +91,7 @@ public class PeriodUtils {
 
             day += first.getActualMaximum(Calendar.DAY_OF_WEEK);
             events.add(weekViewEvent);
-            Log.d(TAG, "Added event - " + new Gson().toJson(weekViewEvent));
+//            Log.d(TAG, "Added event - " + new Gson().toJson(weekViewEvent));
         }
 
         return events;

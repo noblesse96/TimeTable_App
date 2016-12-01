@@ -21,7 +21,7 @@ import java.util.HashMap;
  */
 public class TimeTableFirebaseMessagingService extends FirebaseMessagingService {
 
-    private static final String TAG = "Eswar";
+    private static final String TAG = "Firebase Messages";
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -56,7 +56,7 @@ public class TimeTableFirebaseMessagingService extends FirebaseMessagingService 
             try {
                 Period period = new Gson().fromJson(message.get("period"), Period.class);
                 title += period.getPeriodName();
-                text = period.getPeriodName() + " class on time has been " + message.get("action");
+                text = period.getPeriodName() + " class on " + message.get("start") + " has been " + message.get("action");
             } catch (Exception e) {
                 Log.e(TAG, "unable to decode the period object sent.");
             }
