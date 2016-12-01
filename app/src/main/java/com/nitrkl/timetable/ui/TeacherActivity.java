@@ -87,8 +87,9 @@ public class TeacherActivity extends BaseActivity {
             dialog.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    classUpdate(event, Actions.CANCEL);
-                    dialog.dismiss();
+                    classUpdate(event, Actions.CANCEL, dialog);
+                    dialog.findViewById(R.id.btn_cancel).setClickable(false);
+                    dialog.findViewById(R.id.btn_reschedule).setClickable(false);
                 }
             });
 
@@ -150,8 +151,9 @@ public class TeacherActivity extends BaseActivity {
                     } else if (mEditStart < cur) {
                         Toast.makeText(getApplicationContext(), "Class should have already started!!", Toast.LENGTH_SHORT).show();
                     } else {
-                        classUpdate(event, Actions.RESCHEDULE);
-                        dialog.dismiss();
+                        classUpdate(event, Actions.RESCHEDULE, dialog);
+                        dialog.findViewById(R.id.btn_cancel).setClickable(false);
+                        dialog.findViewById(R.id.btn_reschedule).setClickable(false);
                     }
                 }
             });
@@ -162,7 +164,7 @@ public class TeacherActivity extends BaseActivity {
     /**
      * update the class.
      */
-    private void classUpdate(WeekViewEvent event, Actions action) {
+    private void classUpdate(WeekViewEvent event, Actions action, final Dialog dialog) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getApplication());
         String url = "https://fcm.googleapis.com/fcm/send";
@@ -173,11 +175,17 @@ public class TeacherActivity extends BaseActivity {
                     public void onResponse(JSONObject response) {
                         // Display the first 500 characters of the response string.
                         Log.i("RESPONSE", response.toString());
+                        dialog.findViewById(R.id.btn_cancel).setOnClickListener(null);
+                        dialog.findViewById(R.id.btn_reschedule).setOnClickListener(null);
+                        dialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("RESPONSE", error.toString());
+                Toast.makeText(getApplicationContext(), "OOPS something has gone wrong!! Try Again....", Toast.LENGTH_SHORT).show();
+                dialog.findViewById(R.id.btn_cancel).setClickable(true);
+                dialog.findViewById(R.id.btn_reschedule).setClickable(true);
             }
         }) {
             @Override
