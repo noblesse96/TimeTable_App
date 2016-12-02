@@ -98,7 +98,7 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
         if (period != null) {
             intent.putExtra("period", new Gson().toJson(period));
         }
-        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getBroadcast(context, period.hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     public static PendingIntent getDeleteIntent(Context context) {

@@ -94,4 +94,15 @@ public class Period {
     public void setEndTime(String endTime) {
         mEndTime = endTime;
     }
+
+    @Override
+    public int hashCode() {
+        int falka;
+        try {
+            falka = Integer.parseInt(mCourseId.replaceAll("_", "").replace("c", ""));
+        } catch (NumberFormatException e) {
+            falka = (int) (Math.random() * 1000);
+        }
+        return mDayOfWeek*10000+falka;
+    }
 }
