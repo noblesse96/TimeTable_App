@@ -54,7 +54,7 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
         startTime.setTimeInMillis(start.getTime());
         startTime.set(Calendar.YEAR, now.get(Calendar.YEAR));
         startTime.set(Calendar.MONTH, now.get(Calendar.MONTH));
-        startTime.add(Calendar.MONTH, -1);
+//        startTime.add(Calendar.MONTH, -1);
         startTime.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH));
         startTime.add(Calendar.MINUTE, -5);
 
