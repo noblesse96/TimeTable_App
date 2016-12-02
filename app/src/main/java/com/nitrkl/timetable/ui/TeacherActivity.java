@@ -25,6 +25,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nitrkl.timetable.NotificationEventReceiver;
 import com.nitrkl.timetable.R;
 import com.nitrkl.timetable.objects.Period;
 import com.nitrkl.timetable.utils.DataProvider;
@@ -55,6 +56,7 @@ public class TeacherActivity extends BaseActivity {
     private int mEditEnd = -1;
     private Calendar mStartCal;
     private Calendar mEndCal;
+    private boolean mIsAlarmAdded;
 
     enum Actions {
         CANCEL,
@@ -69,13 +71,16 @@ public class TeacherActivity extends BaseActivity {
         Type listType = new TypeToken<ArrayList<Period>>(){}.getType();
         List<com.nitrkl.timetable.objects.Period> periodList = new Gson().fromJson(DataProvider.TEACHER_TIME_TABLE, listType);
         for (Period period : periodList) {
+            if (!mIsAlarmAdded) {
+                NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), period);
+            }
 //            Log.d(TAG, new Gson().toJson(PeriodUtils.getAllPeriodEvents(period, newYear, newMonth)));
             List<WeekViewEvent> tempEvents = PeriodUtils.getAllPeriodEvents(period, newYear, newMonth, getApplicationContext());
             for (WeekViewEvent weekViewEvent : tempEvents) {
                 events.add(weekViewEvent);
             }
         }
-
+        mIsAlarmAdded = true;
         return events;
     }
 

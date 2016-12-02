@@ -9,6 +9,7 @@ import android.util.Log;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nitrkl.timetable.NotificationEventReceiver;
 import com.nitrkl.timetable.objects.Period;
 import com.nitrkl.timetable.utils.DataProvider;
 import com.nitrkl.timetable.utils.PeriodUtils;
@@ -26,6 +27,7 @@ import java.util.List;
  */
 public class StudentActivity extends BaseActivity {
     private static final String TAG = "StudentTTActivity ";
+    private boolean mIsAlarmAdded;
 
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
@@ -36,6 +38,9 @@ public class StudentActivity extends BaseActivity {
         }.getType();
         List<com.nitrkl.timetable.objects.Period> periodList = new Gson().fromJson(DataProvider.STUDENT_TIME_TABLE, listType);
         for (Period period : periodList) {
+            if (!mIsAlarmAdded) {
+                NotificationEventReceiver.setUpPeriodAlarm(getApplicationContext(), period);
+            }
 //            Log.d(TAG, new Gson().toJson(PeriodUtils.getAllPeriodEvents(period, newYear, newMonth, getApplicationContext())));
             PeriodUtils.subscribeToEvents(period);
             List<WeekViewEvent> tempEvents = PeriodUtils.getAllPeriodEvents(period, newYear, newMonth, getApplicationContext());
@@ -43,6 +48,7 @@ public class StudentActivity extends BaseActivity {
                 events.add(weekViewEvent);
             }
         }
+        mIsAlarmAdded = true;
 
         return events;
     }

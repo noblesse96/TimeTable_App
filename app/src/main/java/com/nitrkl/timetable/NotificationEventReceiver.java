@@ -8,7 +8,13 @@ import android.content.Intent;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.nitrkl.timetable.objects.Period;
+import com.nitrkl.timetable.utils.Constants;
+
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,25 +29,44 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
     public static void setupAlarm(Context context) {
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent alarmIntent = getStartPendingIntent(context);
+        PendingIntent alarmIntent = getStartPendingIntent(context, null);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
                 getTriggerAt(new Date()),
                 NOTIFICATIONS_INTERVAL_IN_HOURS * AlarmManager.INTERVAL_FIFTEEN_MINUTES / 90,
                 alarmIntent);
     }
 
-    /*public static void setUpPeriodAlarm(Context context, Period period) {
+    public static void setUpPeriodAlarm(Context context, Period period) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        Log.i("TDEEE", period.mTimeFrame.toString());
+        Log.i("NotificationReceiver", new Gson().toJson(period));
 
-        PendingIntent alarmIntent = getStartPendingIntent(context);
-//        alarmManager.set(AlarmManager.RTC_WAKEUP, period.mTimeFrame.getTimeInMillis(), alarmIntent);
+        PendingIntent alarmIntent = getStartPendingIntent(context, period);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        Date start = new Date();
+        try {
+            start = sdf.parse(period.getStartTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar now = Calendar.getInstance();
+        Calendar startTime = (Calendar) now.clone();
+        startTime.setTimeInMillis(start.getTime());
+        startTime.set(Calendar.YEAR, now.get(Calendar.YEAR));
+        startTime.set(Calendar.MONTH, now.get(Calendar.MONTH));
+        startTime.add(Calendar.MONTH, -1);
+        startTime.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH));
+        startTime.add(Calendar.MINUTE, -5);
 
         // Figure out a weekly alarm
-         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, period.mTimeFrame.getTimeInMillis(), Constants.WEEKLY_NOTIFICATION_TIME_PERIOD / Constants.DEBUG_BUILD_TIME_PERIOD_OFFSET, alarmIntent);
-
-    }*/
+        Log.i("KFC", period.getStartTime() + " : " + startTime.getTimeInMillis() + " --> " + now.getTimeInMillis() + " ~~ " + getTriggerAt(new Date()));
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+//                getTriggerAt(new Date()),
+                startTime.getTimeInMillis(),
+//                NOTIFICATIONS_INTERVAL_IN_HOURS * AlarmManager.INTERVAL_FIFTEEN_MINUTES / 90,
+                Constants.WEEKLY_NOTIFICATION_TIME_PERIOD,
+                alarmIntent);
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -49,7 +74,7 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
         Intent serviceIntent = null;
         if (ACTION_START_NOTIFICATION_SERVICE.equals(action)) {
             Log.i(getClass().getSimpleName(), "onReceive from alarm, starting notification service");
-            serviceIntent = NotificationIntentService.createIntentStartNotificationService(context);
+            serviceIntent = NotificationIntentService.createIntentStartNotificationService(context, intent);
         } else if (ACTION_DELETE_NOTIFICATION.equals(action)) {
             Log.i(getClass().getSimpleName(), "onReceive delete notification action, starting notification service to handle delete");
             serviceIntent = NotificationIntentService.createIntentDeleteNotification(context);
@@ -67,9 +92,12 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
         return calendar.getTimeInMillis();
     }
 
-    private static PendingIntent getStartPendingIntent(Context context) {
+    private static PendingIntent getStartPendingIntent(Context context, Period period) {
         Intent intent = new Intent(context, NotificationEventReceiver.class);
         intent.setAction(ACTION_START_NOTIFICATION_SERVICE);
+        if (period != null) {
+            intent.putExtra("period", new Gson().toJson(period));
+        }
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 

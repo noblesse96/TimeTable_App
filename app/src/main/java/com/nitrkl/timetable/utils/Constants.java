@@ -19,6 +19,8 @@ public class Constants {
 
     public static final int DEBUG_SPLASH_SCREEN_SLEEP_TIME = 3000;
 
+    public static final int NOTIFY_BEFORE = 1000*60*5;
+
     private Constants() {
     }
 }
