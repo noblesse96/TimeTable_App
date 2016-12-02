@@ -29,6 +29,7 @@ import com.nitrkl.timetable.R;
 import com.nitrkl.timetable.objects.Period;
 import com.nitrkl.timetable.utils.DataProvider;
 import com.nitrkl.timetable.utils.PeriodUtils;
+import com.nitrkl.timetable.utils.Preference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -91,7 +92,7 @@ public class TeacherActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     Log.i(TAG, "dialog cancel action.......");
-                    classUpdate(event, Actions.CANCEL, dialog);
+                    classUpdate(event, Actions.CANCEL, null);
                     dialog.findViewById(R.id.btn_cancel).setOnClickListener(null);
                     dialog.findViewById(R.id.btn_reschedule).setOnClickListener(null);
                     dialog.dismiss();
@@ -168,7 +169,8 @@ public class TeacherActivity extends BaseActivity {
                     } else if (mEditStart < cur) {
                         Toast.makeText(getApplicationContext(), "Class should have already started!!", Toast.LENGTH_SHORT).show();
                     } else {
-                        classUpdate(event, Actions.RESCHEDULE, dialog);
+                        Period period = new Gson().fromJson(new Gson().toJson(event), Period.class);
+                        classUpdate(event, Actions.RESCHEDULE, period);
                         dialog.findViewById(R.id.btn_cancel).setOnClickListener(null);
                         dialog.findViewById(R.id.btn_reschedule).setOnClickListener(null);
                         dialog.dismiss();
@@ -182,7 +184,7 @@ public class TeacherActivity extends BaseActivity {
     /**
      * update the class.
      */
-    private void classUpdate(WeekViewEvent event, Actions action, final Dialog dialog) {
+    private void classUpdate(final WeekViewEvent event, Actions action, final Period period) {
         Log.i(TAG, "class update called : " + new Gson().toJson(event));
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getApplication());
@@ -194,12 +196,16 @@ public class TeacherActivity extends BaseActivity {
                     public void onResponse(JSONObject response) {
                         // Display the first 500 characters of the response string.
                         Log.i("RESPONSE", response.toString());
+                        long time = (mStartCal == null) ? event.getStartTime().getTimeInMillis() : mStartCal.getTimeInMillis();
+                        Preference.getInstance(getApplicationContext()).saveChangedClass(String.valueOf(time), period);
                         goToSplash();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("RESPONSE", error.toString());
+                long time = (mStartCal == null) ? event.getStartTime().getTimeInMillis() : mStartCal.getTimeInMillis();
+                Preference.getInstance(getApplicationContext()).saveChangedClass(String.valueOf(time), period);
                 goToSplash();
             }
         }) {

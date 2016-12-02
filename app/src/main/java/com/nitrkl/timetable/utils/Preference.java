@@ -48,7 +48,7 @@ public class Preference {
     public void saveChangedClass(@NonNull String time, Period period) {
         String obj;
         if (period == null) {
-            obj = "";
+            obj = "-1";
         } else {
             obj = new Gson().toJson(period);
         }
@@ -59,14 +59,13 @@ public class Preference {
     }
 
     public boolean isClassChanged(long time) {
+//        return false;
         Log.i("Pref", "Checking for " + time);
         return !"".equals(mSharedPreferences.getString("" + time, ""));
     }
 
-    public Period getChangedClass(long time, Period period) {
-        String per = mSharedPreferences.getString(time + "", "");
-        if ("".equals(per)) return null;
-        return new Gson().fromJson(per, Period.class);
+    public String getChangedClass(long time) {
+        return mSharedPreferences.getString(time + "", "");
     }
 
     public void setTeacherMode() {

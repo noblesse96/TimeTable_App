@@ -87,10 +87,12 @@ public class PeriodUtils {
                 weekViewEvent.setId(1233333);
             }
             if (preference.isClassChanged(startTime.getTimeInMillis())) {
-                Period changedPeriod = preference.getChangedClass(startTime.getTimeInMillis(), null);
-                if (changedPeriod == null) { // class cancelled
+                String sPer = preference.getChangedClass(startTime.getTimeInMillis());
+                if ("-1".equals(sPer)) { // class cancelled
+                    day += first.getActualMaximum(Calendar.DAY_OF_WEEK);
                     continue;
-                } else {
+                } else if (!"".equals(sPer)) { // class rescheduled.
+                    Period changedPeriod = new Gson().fromJson(sPer, Period.class);
                     // do something else.
                     try {
                         start = sdf.parse(changedPeriod.getStartTime());
